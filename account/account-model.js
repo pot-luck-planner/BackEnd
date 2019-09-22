@@ -9,11 +9,13 @@ module.exports = {
   update
 }; 
 
+//Get all users
 function findUsers() {
   return db('accounts')
     .select('id', 'username', 'firstname', 'lastname')
 }
 
+//Get your account and events you're invited to 
 async function find(id) {
   
   const myAccount = await db('accounts')
@@ -42,6 +44,7 @@ function findById(id) {
     .first();
 }
 
+//Update your account
 async function update(changes, id) {
     await db('accounts')
       .update(changes)
