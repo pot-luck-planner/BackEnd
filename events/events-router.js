@@ -47,12 +47,17 @@ router.get('/invites/:id', authenticate, (req, res) => {
             });
 })
 
+//Add guest invites
 router.post('/:id/invites', authenticate, (req, res) => {
     let invite  = req.body;
     let event_id = req.params.id;
     Events.invite({...invite, event_id})
         .then(invites => {
+            if(host_id === req.accounts) {
             res.status(200).json(invites);
+            }else{
+                res.status(401).json({ message: 'Invalid Credentials' });   
+            }
         })
         .catch(err => {
             res.status(500).json(err);
