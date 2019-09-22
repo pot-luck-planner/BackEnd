@@ -3,22 +3,28 @@ const db = require('../database/dbConfig.js');
 module.exports = {
   add,
   find,
+  findUsers,
   findBy,
   findById,
   update
-};
+}; 
 
-function find() {
+function findUsers() {
   return db('accounts')
     .select('id', 'username', 'firstname', 'lastname')
 }
 
-// function find(id) {
-//     return db('events as ev')
-//       .innerJoin('accounts', 'ev.host_id', '=', 'accounts.id')
-//       .select('accounts.id as account_id', 'accounts.username', 'accounts.firstname', 'accounts.lastname', 'ev.id as event_id', 'ev.name', 'ev.date', 'ev.time', 'ev.location', 'accounts.firstname as host')
-//       .where({ host_id: id }) 
-// }
+async function find(id) {
+  
+  const myAccount = await db('accounts')
+     .select('id', 'username', 'firstname', 'lastname')
+     .where({ id })
+  const potlucks = await db('events as ev')
+       .innerJoin('attendees', 'ev.id', '=', 'attendees.event_id')
+       .select('ev.name', 'ev.date', 'ev.time', 'ev.location', 'ev.host_name as host')
+       .where({ account_id: id })
+   return [ { myAccount }, { potlucks } ]
+}
 
 function findBy(filter) {
   return db('accounts').where(filter);

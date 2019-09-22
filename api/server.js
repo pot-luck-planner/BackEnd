@@ -13,7 +13,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/account', accountRouter);
+server.use('/accounts', accountRouter);
 server.use('/events', eventsRouter)
 
 

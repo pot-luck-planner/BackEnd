@@ -7,6 +7,7 @@ const Accounts = require('./account-model.js');
 const authenticate = require('../auth/authenticate-middleware.js');
 
 router.get('/', authenticate, (req, res) => {
+  console.log(req.account.id)
   Accounts.find(req.account.id)  
     .then(accounts => {
         res.json(accounts);
@@ -14,17 +15,12 @@ router.get('/', authenticate, (req, res) => {
     .catch(err => res.send(err));
 });
 
-router.post('/', authenticate, (req, res) => {
-  let event = req.body;
-  let host_id = req.account.id;
-  let host_name = req.account.username;
-  Accounts.add({ ...event, host_id, host_name })
-      .then(newEvent => {
-              res.status(200).json(newEvent);
-          })
-          .catch(err => {
-              res.status(500).json(err);
-          });
+router.get('/users', authenticate, (req, res) => {
+  Accounts.findUsers()  
+    .then(accounts => {
+        res.json(accounts);
+    })
+    .catch(err => res.send(err));
 });
 
 router.post('/register', (req, res) => {
