@@ -54,16 +54,47 @@ router.post('/:id/invites', authenticate, (req, res) => {
     let event_id = req.params.id;
     Events.invite({...invite, event_id})
         .then(invites => {
-            // if(host_id === req.accounts) {
-            res.status(200).json({ messages: 'Succesfully created invite', invites });
-            // }else{
-            //     res.status(401).json({ message: 'Invalid Credentials' });   
-            // }
+            res.status(200).json({ message: 'Successfully created invite', invites });
         })
         .catch(err => {
             res.status(500).json(err);
         });
 });
+
+//Add food for event
+router.post('/:id/food', authenticate, (req, res) => {
+    let body = req.body;
+    let event_id = req.params.id;
+    Events.addFood({...body, event_id})
+        .then(food => {
+            res.status(200).json({ message: 'Successfully added item', food })
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+})
+
+//Get list of food by event id
+router.get('/:id/food', authenticate, (req, res) => {
+    Events.getFood(req.params.id)
+    .then(food => {
+        res.json(food);
+    })
+    .catch(err => res.send(err));
+})
+
+//Update an invite
+router.put('/:id/invites', authenticate, (req, res) => {
+    let body = req.body;
+    let id = req.params.id;
+    Events.updateInvite(body, id)
+        .then(updatedInvite => {
+                res.status(200).json({ message: 'Successfully updated invite' ,updatedInvite });
+            })
+            .catch(err => {
+                res.status(500).json(err);
+            });
+})
 
 //Update an event
 router.put('/:id', authenticate, (req, res) => {
@@ -72,11 +103,7 @@ router.put('/:id', authenticate, (req, res) => {
     let id = req.params.id;
     Events.updateEvent(body, id)
         .then(updatedEvent => {
-            // if (host_id  === req.account.id) {
-                res.status(200).json({ message: 'Successfully updated event' ,updatedEvent});
-                // }else{
-                //     res.status(401).json({ message: 'Invalid Credentials' }); 
-                // }
+                res.status(200).json({ message: 'Successfully updated event' ,updatedEvent });
             })
             .catch(err => {
                 res.status(500).json(err);
