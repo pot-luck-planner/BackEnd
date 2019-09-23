@@ -73,6 +73,11 @@ exports.up = function(knex) {
           foods.text('notes', 2000);
         })
 
+      .createTable('ingredients', ingredients => {
+          ingredients.increments();
+          ingredients.string('name', 128).notNullable();
+      })  
+
       .createTable('food_ingredients', food_ingredients => {
           food_ingredients
             .integer('food_id')
@@ -88,19 +93,13 @@ exports.up = function(knex) {
             .inTable('ingredients')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
-      })
-
-      .createTable('ingredients', ingredients => {
-          ingredients.increments();
-          ingredients.string('name', 128).notNullable();
-      })
-  
+      })  
 };
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('ingredients')
         .dropTableIfExists('food-ingredients')
+        .dropTableIfExists('ingredients')
         .dropTableIfExists('foods')
         .dropTableIfExists('attendees')
         .dropTableIfExists('events')
