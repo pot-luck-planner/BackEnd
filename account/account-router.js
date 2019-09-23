@@ -63,13 +63,14 @@ router.put('/:id', authenticate, (req, res) => {
   let id = req.params.id;
   Accounts.update(body, id)
       .then(updated => {
-          if (username  === req.account.username) {
+          if (req.body.username  === req.account.username) {
               res.status(200).json({message: 'Update Successful', updated});
               }else{
                   res.status(401).json({ message: 'Invalid Credentials' }); 
               }
           })
           .catch(err => {
+            console.log(err)
               res.status(500).json(err);
           });
 })
