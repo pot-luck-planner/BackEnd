@@ -5,6 +5,9 @@ module.exports = {
   find,
   invite,
   findInvites,
+  updateInvite,
+  addFood,
+  getFood,
   myInvites,
   updateEvent,
   deleteEvent
@@ -44,11 +47,33 @@ async function invite(invites) {
   return invites;
 }
 
+//Add food to event
+async function addFood(food) {
+  const [] = await db('food').insert(food)
+  return food;
+}
+
+//Get food be event id
+function getFood(id) {
+  return db('food')
+  .select()
+  .where({ event_id: id })
+}
+
 //Get my invites
 function myInvites(id) {
   return db('invites')
   .select()
   .where({ account_id: id })
+}
+
+//Update invites
+async function updateInvite(changes, id) {
+  await db('invites')
+    .update(changes)
+    .where({ id });
+
+  return changes
 }
 
 //Update event
