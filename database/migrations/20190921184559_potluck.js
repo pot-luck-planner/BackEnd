@@ -11,7 +11,7 @@ exports.up = function(knex) {
       })
 
       .createTable('events', events => {
-          events.increments();
+          events.increments()
           events.string('name', 500).notNullable();
           events
             .integer('host_id')
@@ -27,81 +27,36 @@ exports.up = function(knex) {
             .inTable('accounts')
             .onUpdate('CASCADE')
             .onDelete('CASCADE'); 
-          events.string('date', 128).notNullable();
-          events.string('time', 128).notNullable();
-          events.string('location', 500).notNullable();
+          events.string('date', 128).notNullable().defaultTo('TBD');
+          events.string('time', 128).notNullable().defaultTo('TBD');
+          events.string('location', 500).notNullable().defaultTo('TBD');
       })
 
-      .createTable('attendees', attendees => {
-          attendees
+      .createTable('invites', invites => {
+          invites.increments();
+          invites
             .integer('event_id')
             .unsigned()
             .references('id')
             .inTable('events')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
-          attendees
+          invites
             .integer('account_id')
             .unsigned()
             .references('id')
             .inTable('accounts')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
-          attendees.boolean('rsvp').notNullable().defaultTo(false);
-      })
-
-      .createTable('foods', foods => {
-          foods.increments();
-          foods
-            .integer('event_id')
-            .unsigned()
-            .references('id')
-            .inTable('events')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
-          foods.string('name', 500).notNullable();
-          foods.boolean('requested').notNullable().defaultTo(false);
-          foods.string('type', 128).notNullable();
-          foods.string('diet', 128).notNullable();
-          foods
-            .integer('made_by')
-            .unsigned()
-            .references('id')
-            .inTable('accounts')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
-          foods.text('notes', 2000);
-        })
-
-      .createTable('ingredients', ingredients => {
-          ingredients.increments();
-          ingredients.string('name', 128).notNullable();
+          invites.string('food', 500).notNullable().defaultTo('TBD');
+          invites.boolean('rsvp').notNullable().defaultTo(false);
+          invites.text('notes', 2000);
       })  
-
-      .createTable('food_ingredients', food_ingredients => {
-          food_ingredients
-            .integer('food_id')
-            .unsigned()
-            .references('id')
-            .inTable('foods')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
-          food_ingredients
-            .integer('ing_id')
-            .unsigned()
-            .references('id')
-            .inTable('ingredients')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE');
-      })  
-};
+}
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('food-ingredients')
-        .dropTableIfExists('ingredients')
-        .dropTableIfExists('foods')
-        .dropTableIfExists('attendees')
+        .dropTableIfExists('invites')
         .dropTableIfExists('events')
         .dropTableIfExists('accounts');
 };
