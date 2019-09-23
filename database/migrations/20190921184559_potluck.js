@@ -74,6 +74,12 @@ exports.up = function(knex) {
           foods.text('notes', 2000);
         })
 
+      .createTable('ingredients', ingredients => {
+          ingredients.increments();
+          ingredients.string('name', 128).notNullable();
+          attendees.primary(['food_id', 'ing_id']);
+      })  
+
       .createTable('food_ingredients', food_ingredients => {
           food_ingredients
             .integer('food_id')
@@ -89,14 +95,7 @@ exports.up = function(knex) {
             .inTable('ingredients')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
-          food_ingredients.primary(['food_id', 'ing_id']);
-      })
-
-      .createTable('ingredients', ingredients => {
-          ingredients.increments();
-          ingredients.string('name', 128).notNullable();
-      })
-  
+      })  
 };
 
 exports.down = function(knex) {

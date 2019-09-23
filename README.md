@@ -6,7 +6,7 @@ Here you will find the documentation for the Potluck Planner Backend Node server
 
 ## Endpoints
 
-The base URL for this server is `www.url-here.com`. All routes will be added to the end of this URL, like so: `www.url-here.com/account/register`.
+The base URL for this server is `https://bw-potluck-planner.herokuapp.com`. All routes will be added to the end of this URL, like so: `https://bw-potluck-planner.herokuapp.com/account/register`.
 
 All POST and PUT endpoints expect a certain data format and may have restrictions. The table below details the endpoint URL, what data the endpoint expects, what data the endpoint gives back, and any other pertinent information.
 

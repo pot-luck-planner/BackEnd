@@ -9,11 +9,13 @@ module.exports = {
   update
 }; 
 
+//Get all users
 function findUsers() {
   return db('accounts')
     .select('id', 'username', 'firstname', 'lastname')
 }
 
+//Get all your info and all events associated with you
 async function find(id) {
   
   const myAccount = await db('accounts')
@@ -23,7 +25,10 @@ async function find(id) {
        .innerJoin('attendees', 'ev.id', '=', 'attendees.event_id')
        .select('ev.name', 'ev.date', 'ev.time', 'ev.location', 'ev.host_name as host')
        .where({ account_id: id })
-   return [ { myAccount }, { potlucks } ]
+  const myEvents = await db('events')
+       .select()
+       .where({ host_id: id })
+   return [ { myAccount }, { myEvents }, { potlucks } ]
 }
 
 function findBy(filter) {
@@ -42,6 +47,7 @@ function findById(id) {
     .first();
 }
 
+//Update your account
 async function update(changes, id) {
     await db('accounts')
       .update(changes)
