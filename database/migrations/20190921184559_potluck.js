@@ -51,11 +51,24 @@ exports.up = function(knex) {
           invites.string('food', 500).notNullable().defaultTo('TBD');
           invites.boolean('rsvp').notNullable().defaultTo(false);
           invites.text('notes', 2000);
-      })  
+      })
+      
+      .createTable('food', food => {
+          food.increments();
+          food
+            .integer('event_id')
+            .unsigned()
+            .references('id')
+            .inTable('events')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE');
+          food.string('name').notNullable();
+      })
 }
 
 exports.down = function(knex) {
     return knex.schema
+        .dropTableIfExists('food')
         .dropTableIfExists('invites')
         .dropTableIfExists('events')
         .dropTableIfExists('accounts');
