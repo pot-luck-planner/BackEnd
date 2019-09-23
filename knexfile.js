@@ -21,7 +21,9 @@ module.exports = {
   production: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: process.env.DATABASE_URL,
+    connection:  {
+      filename: './database/potluck.db3',
+    },
     migrations: {
       directory: './database/migrations',
     },
