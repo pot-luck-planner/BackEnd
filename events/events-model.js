@@ -29,20 +29,24 @@ function findEventById(id) {
         .first();
 }
 
-function findInvites() {
-  return db('attendees')
-    .select()
+//Get invites by id
+function findInvites(id) {
+  return db('invites as i')
+    .innerJoin('accounts as a', 'i.account_id', '=', 'a.id')
+    .innerJoin('events as e', 'i.event_id', '=', 'e.id')
+    .select('i.event_id', 'e.name', 'i.account_id', 'a.username', 'a.firstname', 'a.lastname', 'i.food', 'i.notes', 'i.rsvp')
+    .where({ event_id: id })
 }
 
 //Add invites to event
 async function invite(invites) {
-  const [] = await db('attendees').insert(invites)
+  const [] = await db('invites').insert(invites)
   return invites;
 }
 
 //Get my invites
 function myInvites(id) {
-  return db('attendees')
+  return db('invites')
   .select()
   .where({ account_id: id })
 }

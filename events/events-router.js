@@ -26,9 +26,10 @@ router.post('/', authenticate, (req, res) => {
           });
 });
 
-//Get all invites
-router.get('/invites', (req, res) => {
-    Events.findInvites()
+//Get all invites by event id
+router.get('/:id/invites', (req, res) => {
+    let id = req.params.id
+    Events.findInvites(id)
         .then(invites => {
             res.json(invites)
         })
