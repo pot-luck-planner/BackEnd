@@ -51,15 +51,18 @@ router.get('/invites/:id', authenticate, (req, res) => {
 router.post('/:id/invites', authenticate, (req, res) => {
     let invite  = req.body;
     let event_id = req.params.id;
+    let host_id = req.account.id;
     Events.invite({...invite, event_id})
         .then(invites => {
-            if(host_id === req.accounts) {
+            if(host_id) { //req.accounts is undefined. Changed to a check for presence of host_id.
             res.status(200).json(invites);
             }else{
+                console.log(host_id, req.account.id, req.accounts)
                 res.status(401).json({ message: 'Invalid Credentials' });   
             }
         })
         .catch(err => {
+            console.log(err)
             res.status(500).json(err);
         });
 });

@@ -31,7 +31,7 @@ router.post('/register', (req, res) => {
     Accounts.add(account)
       .then(account => {
         const token = generateToken(account);  
-        res.status(200).json({ message: `Welcome to Potluck Planner ${account.firstname}!`, token });
+        res.status(200).json({ message: `Welcome to Potluck Planner, ${account.firstname}!`, token });
       })
       .catch(error => {
         res.status(500).json(error);
@@ -46,7 +46,7 @@ router.post('/login', (req, res) => {
       .then(account => {
         if (account && bcrypt.compareSync(password, account.password)) {
           const token = generateToken(account);
-          res.status(200).json({ message: `Welcome back ${account.firstname}`, token });
+          res.status(200).json({ message: `Welcome back, ${account.firstname}`, token });
         } else {
           res.status(401).json({ message: 'Invalid Credentials' });
         }

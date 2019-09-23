@@ -62,3 +62,28 @@ function deleteEvent(id) {
       .del()
       .where({ id });
 }
+
+// Get list of food at potluck
+
+function getFood(id) {
+  return db('foods')
+    .where({ "event_id": id })
+}
+
+function addFoodItem(item) {
+  return db('foods')
+    .insert(item)
+}
+
+function updateFoodItem(changes, id) {
+  return db('foods')
+    .update(changes)
+    .where({ id });
+}
+
+function deleteFoodItem(id) {
+  return db('foods')
+    .where({ id })
+    .del()
+}
+

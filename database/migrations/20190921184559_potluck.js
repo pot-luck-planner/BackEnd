@@ -48,6 +48,7 @@ exports.up = function(knex) {
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
           attendees.boolean('rsvp').notNullable().defaultTo(false);
+          attendees.primary(['event_id', 'account_id']);
       })
 
       .createTable('foods', foods => {
@@ -62,7 +63,7 @@ exports.up = function(knex) {
           foods.string('name', 500).notNullable();
           foods.boolean('requested').notNullable().defaultTo(false);
           foods.string('type', 128).notNullable();
-          foods.string('diet', 128).notNullable();
+          foods.string('diet', 128);
           foods
             .integer('made_by')
             .unsigned()
@@ -88,6 +89,7 @@ exports.up = function(knex) {
             .inTable('ingredients')
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
+          food_ingredients.primary(['food_id', 'ing_id']);
       })
 
       .createTable('ingredients', ingredients => {
