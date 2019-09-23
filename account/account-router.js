@@ -48,7 +48,7 @@ router.post('/login', (req, res) => {
           const token = generateToken(account);
           res.status(200).json({ message: `Welcome back ${account.firstname}`, token });
         } else {
-          res.status(401).json({ message: 'Invalid Credentials' });
+          res.status(401).json({ message: 'Username or password incorrect' });
         }
       })
       .catch(error => {
@@ -63,11 +63,11 @@ router.put('/:id', authenticate, (req, res) => {
   let id = req.params.id;
   Accounts.update(body, id)
       .then(updated => {
-          if (username  === req.account.username) {
+          // if (username  === req.account.username) {
               res.status(200).json({message: 'Update Successful', updated});
-              }else{
-                  res.status(401).json({ message: 'Invalid Credentials' }); 
-              }
+              // }else{
+              //     res.status(401).json({ message: 'Invalid Credentials' }); 
+              // }
           })
           .catch(err => {
               res.status(500).json(err);

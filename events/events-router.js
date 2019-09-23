@@ -19,7 +19,7 @@ router.post('/', authenticate, (req, res) => {
   let host_name = req.account.username;
   Events.add({ ...event, host_id, host_name })
       .then(newEvent => {
-              res.status(200).json(newEvent);
+              res.status(200).json({ message: 'Successfully added event', newEvent});
           })
           .catch(err => {
               res.status(500).json(err);
@@ -53,11 +53,11 @@ router.post('/:id/invites', authenticate, (req, res) => {
     let event_id = req.params.id;
     Events.invite({...invite, event_id})
         .then(invites => {
-            if(host_id === req.accounts) {
-            res.status(200).json(invites);
-            }else{
-                res.status(401).json({ message: 'Invalid Credentials' });   
-            }
+            // if(host_id === req.accounts) {
+            res.status(200).json({ messages: 'Succesfully created invite', invites });
+            // }else{
+            //     res.status(401).json({ message: 'Invalid Credentials' });   
+            // }
         })
         .catch(err => {
             res.status(500).json(err);
@@ -71,11 +71,11 @@ router.put('/:id', authenticate, (req, res) => {
     let id = req.params.id;
     Events.updateEvent(body, id)
         .then(updatedEvent => {
-            if (host_id  === req.account.id) {
-                res.status(200).json(updatedEvent);
-                }else{
-                    res.status(401).json({ message: 'Invalid Credentials' }); 
-                }
+            // if (host_id  === req.account.id) {
+                res.status(200).json({ message: 'Successfully updated event' ,updatedEvent});
+                // }else{
+                //     res.status(401).json({ message: 'Invalid Credentials' }); 
+                // }
             })
             .catch(err => {
                 res.status(500).json(err);
@@ -87,7 +87,7 @@ router.delete('/:id', authenticate, (req, res) => {
     let id = req.params.id;
     Events.deleteEvent(id)
         .then(deleted => {
-            if (host_id  === req.account.username) {
+            if (host_id  === req.account.id) {
                 res.status(200).json(deleted);
                 }else{
                     res.status(401).json({ message: 'Invalid Credentials' }); 
