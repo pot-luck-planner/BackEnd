@@ -43,6 +43,7 @@ async function add(account) {
 
 function findById(id) {
   return db('accounts')
+    .select('id', 'username', 'firstname', 'lastname')
     .where({ id })
     .first();
 }

@@ -37,7 +37,7 @@ function findInvites() {
 //Add invites to event
 async function invite(invites) {
   const [] = await db('attendees').insert(invites)
-  return findInvites();
+  return invites;
 }
 
 //Get my invites
