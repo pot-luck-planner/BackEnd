@@ -36,7 +36,7 @@ router.get('/:id/invites', (req, res) => {
         .catch(err => res.send(err))
 })
 
-//Get my your invites
+//Get events you're invited to
 router.get('/invites/:id', authenticate, (req, res) => {
     console.log(req.params.id, req.account.id)
     Events.myInvites(req.account.id)
