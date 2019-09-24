@@ -35,7 +35,7 @@ function findEventById(id) {
         .first();
 }
 
-//Get invites by even_id
+//Get invites by event_id
 function findInvites(id) {
   return db('invites as i')
     .innerJoin('accounts as a', 'i.account_id', '=', 'a.id')
