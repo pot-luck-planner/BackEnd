@@ -25,14 +25,15 @@ async function add(event) {
   const [id] = await db('events').insert(event, 'id');
   return findEventById(id);
 }
-    
+
+//Get event by id
 function findEventById(id) {
       return db('events')
         .where({ id })
         .first();
 }
 
-//Get invites by id
+//Get invites by even_id
 function findInvites(id) {
   return db('invites as i')
     .innerJoin('accounts as a', 'i.account_id', '=', 'a.id')
@@ -53,14 +54,14 @@ async function addFood(food) {
   return food;
 }
 
-//Get food be event id
+//Get food by event_id
 function getFood(id) {
   return db('food')
   .select()
   .where({ event_id: id })
 }
 
-//Get my invites
+//Get events you're invited to
 function myInvites(id) {
   return db('invites')
   .select()

@@ -28,7 +28,7 @@ async function find(id) {
   const myEvents = await db('events')
        .select()
        .where({ host_id: id })
-   return [ { myAccount }, { myEvents }, { potlucks } ]
+   return { myAccount,  myEvents,  potlucks } 
 }
 
 function findBy(filter) {
