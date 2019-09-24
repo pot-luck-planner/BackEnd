@@ -63,6 +63,8 @@ exports.up = function(knex) {
             .onUpdate('CASCADE')
             .onDelete('CASCADE');
           food.string('name').notNullable();
+          food.string('food_qty', 128);
+          food.string('category', 128);
       })
 }
 
