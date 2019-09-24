@@ -8,9 +8,11 @@ module.exports = {
   updateInvite,
   addFood,
   getFood,
+  foodItem,
   myInvites,
   updateEvent,
-  deleteEvent
+  deleteEvent,
+  findEventById
 };
 
 //Get your hosted events
@@ -59,6 +61,13 @@ function getFood(id) {
   return db('food')
   .select()
   .where({ event_id: id })
+}
+
+//Get a food by its id
+function foodItem(id) {
+  return db('food')
+  .select()
+  .where({ id })
 }
 
 //Get events you're invited to

@@ -12,6 +12,15 @@ router.get('/', authenticate, (req, res) => {
     .catch(err => res.send(err));
 });
 
+//Get events by id
+router.get('/:id', (req, res) => {
+    Events.findEventById(req.params.id)
+        .then(accounts => {
+            res.json(accounts);
+        })
+        .catch(err => res.send(err))
+})
+
 //Add new event
 router.post('/', authenticate, (req, res) => {
   let event = req.body;
@@ -79,6 +88,15 @@ router.get('/:id/food', authenticate, (req, res) => {
     Events.getFood(req.params.id)
     .then(food => {
         res.json(food);
+    })
+    .catch(err => res.send(err));
+})
+
+//Get food item by id
+router.get('/food/:id', (req, res) => {
+    Events.foodItem(req.params.id)
+    .then(item => {
+        res.json(item);
     })
     .catch(err => res.send(err));
 })
