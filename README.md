@@ -107,7 +107,7 @@ Request:
 
 Creates and returns a token.
 
-***POST*** https://potluck-planner-v2.herokuapp.com/accounts/login
+***POST*** `https://potluck-planner-v2.herokuapp.com/accounts/login`
 
 Request:
 ```json 
@@ -119,11 +119,11 @@ Request:
 
 Creates and returns a token.
 
-***GET*** https://potluck-planner-v2.herokuapp.com/accounts
+***GET*** `https://potluck-planner-v2.herokuapp.com/accounts`
 
 Returns signed-in users account information and events that user has created along with any events that user has been invited to.
 
-***PUT*** https://potluck-planner-v2.herokuapp.com/accounts/:id
+***PUT*** `https://potluck-planner-v2.herokuapp.com/accounts/:id`
 
 id in url refers to the account id
 
@@ -140,7 +140,7 @@ Updates account information
 
 <h3>Events-Routes</h3>
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events
+***GET*** `https://potluck-planner-v2.herokuapp.com/events`
 
 Returns all events that the signed in user has created.
 
@@ -177,7 +177,7 @@ Request:
 
 Adds requested user by id to list of invites for an event.
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events/invites:id
+***GET*** https://potluck-planner-v2.herokuapp.com/events/invites/:id
 
 id in url refers to the account id
 
