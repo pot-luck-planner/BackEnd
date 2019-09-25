@@ -144,13 +144,13 @@ Updates account information
 
 Returns all events that the signed in user has created.
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events/:id
+***GET*** `https://potluck-planner-v2.herokuapp.com/events/:id`
 
 id in url refers to the event id
 
 Returns an event by id.
 
-***POST*** https://potluck-planner-v2.herokuapp.com/events
+***POST*** `https://potluck-planner-v2.herokuapp.com/events`
 
 Request:
 ```json
@@ -164,7 +164,7 @@ Request:
 
 Creates a new PotLuck event.
 
-***POST*** https://potluck-planner-v2.herokuapp.com/events/:id/invites
+***POST*** `https://potluck-planner-v2.herokuapp.com/events/:id/invites`
 
 id in url refers to the event id
 
@@ -177,13 +177,13 @@ Request:
 
 Adds requested user by id to list of invites for an event.
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events/invites/:id
+***GET*** `https://potluck-planner-v2.herokuapp.com/events/invites/:id`
 
 id in url refers to the account id
 
 Returns all events the signed-in user has been invited to.
 
-***POST*** https://potluck-planner-v2.herokuapp.com/events/:id/food
+***POST*** `https://potluck-planner-v2.herokuapp.com/events/:id/food`
 
 id in url refers to the event id
 
@@ -198,19 +198,19 @@ Request:
 
 Adds requested food item to list of food for an event.
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events/:id/food
+***GET*** `https://potluck-planner-v2.herokuapp.com/events/:id/food`
 
 id in url refers to the account id
 
 Returns all food that has been added to an event
 
-***GET*** https://potluck-planner-v2.herokuapp.com/events/food/:id
+***GET*** `https://potluck-planner-v2.herokuapp.com/events/food/:id`
 
 id in url refers to the food item id
 
 Returns a food by id
 
-***PUT*** https://potluck-planner-v2.herokuapp.com/events/:id/invites
+***PUT*** `https://potluck-planner-v2.herokuapp.com/events/:id/invites`
 
 id in url refers to the invite id
 
@@ -226,7 +226,7 @@ Request:
 
 Allows invited user to list what food item they are bringing, rsvp and add optinal notes.
 
-***PUT*** https://potluck-planner-v2.herokuapp.com/events/:id
+***PUT*** `https://potluck-planner-v2.herokuapp.com/events/:id`
 
 id in url refers to the event id
 
@@ -242,7 +242,7 @@ Request:
 
 Updates an event.
 
-***DELETE*** https://potluck-planner-v2.herokuapp.com/events/:id
+***DELETE*** `https://potluck-planner-v2.herokuapp.com/events/:id`
 
 id in url refers to the event id
 
