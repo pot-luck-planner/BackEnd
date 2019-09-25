@@ -75,7 +75,7 @@ function myInvites(id) {
   return db('invites as i')
     .innerJoin('accounts as a', 'i.account_id', '=', 'a.id')
     .innerJoin('events as e', 'i.event_id', '=', 'e.id')
-    .select('i.event_id', 'e.name', 'e.host_id', 'e.host_name as host', 'i.account_id', 'a.username', 'a.firstname', 'a.lastname', 'i.food', 'i.notes', 'i.rsvp')
+    .select('i.event_id', 'e.name', 'e.date', 'e.time', 'e.location', 'e.host_id', 'e.host_name as host', 'i.account_id', 'a.username', 'a.firstname', 'a.lastname', 'i.food', 'i.notes', 'i.rsvp')
     .where({ account_id: id} )
 }
  
