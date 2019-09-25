@@ -50,7 +50,7 @@ router.get('/invites/:id', authenticate, (req, res) => {
     console.log(req.params.id, req.account.id)
     Events.myInvites(req.account.id)
         .then(invites => {
-                res.status(200).json({ invites: invites });
+                res.status(200).json(invites);
             })
             .catch(err => {
                 res.status(500).json(err);
