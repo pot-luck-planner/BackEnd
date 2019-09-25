@@ -19,71 +19,71 @@ Jonathon Green
 
 ### Accounts Table
 
-accounts.increments();
-accounts.string('firstname', 128).notNullable();
-accounts.string('lastname', 128).notNullable();
-accounts
-  .string('username', 128)
-  .notNullable()
-  .unique();
-accounts.string('password', 128).notNullable();
+`accounts.increments();`<br />
+`accounts.string('firstname', 128).notNullable();`<br />
+`accounts.string('lastname', 128).notNullable();`<br />
+`accounts`<br />
+  `.string('username', 128)`<br />
+  `.notNullable()`<br />
+  `.unique();`<br />
+`accounts.string('password', 128).notNullable();`<br />
 
 ### Events Table
 
-events.increments()
-events.string('name', 500).notNullable();
-events
-  .integer('host_id')
-  .unsigned()
-  .references('id')
-  .inTable('accounts')
-  .onUpdate('CASCADE')
-  .onDelete('CASCADE');
-events
-  .string('host_name') 
-  .unsigned()
-  .references('username')
-  .inTable('accounts')
-  .onUpdate('CASCADE')
-  .onDelete('CASCADE'); 
-events.string('date', 128).notNullable().defaultTo('TBD');
-events.string('time', 128).notNullable().defaultTo('TBD');
-events.string('location', 500).notNullable().defaultTo('TBD');
+`events.increments()`<br />
+`events.string('name', 500).notNullable();`<br />
+`events`<br />
+  `.integer('host_id')`<br />
+  `.unsigned()`<br />
+  `.references('id')`<br />
+  `.inTable('accounts')`<br />
+  `.onUpdate('CASCADE')`<br />
+  `.onDelete('CASCADE');`<br />
+`events`<br />
+  `.string('host_name')`<br />
+  `.unsigned()`<br />
+  `.references('username')`<br />
+  `.inTable('accounts')`<br />
+  `.onUpdate('CASCADE')`<br />
+  `.onDelete('CASCADE');`<br />
+`events.string('date', 128).notNullable().defaultTo('TBD');`<br />
+`events.string('time', 128).notNullable().defaultTo('TBD');`<br />
+`events.string('location', 500).notNullable().defaultTo('TBD');`<br />
 
 ### Invites Table
 
-invites.increments();
-invites
-  .integer('event_id')
-  .unsigned()
-  .references('id')
-  .inTable('events')
-  .onUpdate('CASCADE')
-  .onDelete('CASCADE');
-invites
-  .integer('account_id')
-  .unsigned()
-  .references('id')
-  .inTable('accounts')
-  .onUpdate('CASCADE')
-  .onDelete('CASCADE');
-invites.string('food', 500).notNullable().defaultTo('TBD');
-invites.boolean('rsvp').notNullable().defaultTo(false);
-invites.text('notes', 2000);
+`invites.increments();`<br />
+`invites`<br />
+  `.integer('event_id')`<br />
+  `.unsigned()`<br />
+  `.references('id')`<br />
+  `.inTable('events')`<br />
+  `.onUpdate('CASCADE')`<br />
+  `.onDelete('CASCADE');`<br />
+`invites`<br />
+  `.integer('account_id')`<br />
+  `.unsigned()`<br />
+  `.references('id')`<br />
+  `.inTable('accounts')`<br />
+  `.onUpdate('CASCADE')`<br />
+  `.onDelete('CASCADE');`<br />
+`invites.string('food', 500).notNullable().defaultTo('TBD');`<br />
+`invites.boolean('rsvp').notNullable().defaultTo(false);`<br />
+`invites.text('notes', 2000);`<br />
 
 ### Food Tables
 
-food.increments();
-food
-  .integer('event_id')
-  .unsigned()
-  .references('id')
-  .inTable('events')
-  .onUpdate('CASCADE')
-  .onDelete('CASCADE');
-food.string('name').notNullable();
-food.string('food_qty', 128);
-food.string('category', 128);
+`food.increments();`<br />
+`food`<br />
+  `.integer('event_id')`<br />
+  `.unsigned()`<br />
+  `.references('id')`<br />
+  `.inTable('events')`<br />
+  `.onUpdate('CASCADE')`<br />
+  `.onDelete('CASCADE');`<br />
+`food.string('name').notNullable();`<br />
+`food.string('food_qty', 128);`<br />
+`food.string('category', 128);`<br />
 
 ## Endpoints
 
