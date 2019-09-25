@@ -1,23 +1,23 @@
 <h1 align="center">Potluck Planner - Backend</h1>
 
-## Installation
+<h2>Installation</h2>
 
 ```bash
 npm install
 ```
-## Usage
+<h2>Usage</h2>
 
 ```bash
 npm run server || nodemon
 ```
 
-## Author
+<h2>Author</h2>
 
 Jonathon Green
 
-## Tables
+<h2>Tables</h2>
 
-### Accounts Table
+<h3>Accounts Table</h3>
 
 `accounts.increments();`<br />
 `accounts.string('firstname', 128).notNullable();`<br />
@@ -28,7 +28,7 @@ Jonathon Green
   `.unique();`<br />
 `accounts.string('password', 128).notNullable();`<br />
 
-### Events Table
+<h3>Events Table</h3>
 
 `events.increments()`<br />
 `events.string('name', 500).notNullable();`<br />
@@ -50,7 +50,7 @@ Jonathon Green
 `events.string('time', 128).notNullable().defaultTo('TBD');`<br />
 `events.string('location', 500).notNullable().defaultTo('TBD');`<br />
 
-### Invites Table
+<h3>Invites Table</h3>
 
 `invites.increments();`<br />
 `invites`<br />
@@ -71,7 +71,7 @@ Jonathon Green
 `invites.boolean('rsvp').notNullable().defaultTo(false);`<br />
 `invites.text('notes', 2000);`<br />
 
-### Food Tables
+<h3>Food Tables</h3>
 
 `food.increments();`<br />
 `food`<br />
@@ -93,23 +93,27 @@ https://potluck-planner-v2.herokuapp.com/
 
 ### Account-Routes
 
-##### POST https://potluck-planner-v2.herokuapp.com/accounts/register
+##### POST `https://potluck-planner-v2.herokuapp.com/accounts/register`
 
-Request:{   
+Request:
+```json {          
             "firstname": "John",
             "lastname": "Doe",
 	        "username": "JohnDoe123",
 	        "password": "pa$$w0rd"
         }
+```
 
 Creates and returns a token.
 
 ##### POST https://potluck-planner-v2.herokuapp.com/accounts/login
 
-Request:{   
-	        "username": "JohnDoe123",
+Request:
+```json {   
+	        "username": "JohnDoe123"
 	        "password": "pa$$w0rd"
         }
+```
 
 Creates and returns a token.
 
@@ -121,11 +125,13 @@ Returns signed-in users account information and events that user has created alo
 
 id in url refers to the account id
 
-Request:{   
+Request:
+```json {   
             "firstname": "John",
             "lastname": "Doe",
 	        "username": "JohnDoe123"
         }
+```
 
 Updates account information
 
@@ -143,12 +149,14 @@ Returns an event by id.
 
 ##### POST https://potluck-planner-v2.herokuapp.com/events
 
-Request:{
+Request:
+```json {
             "name": "Picnic",
             "date": "10/2/2019",
             "time": "12 pm",
             "location": "The zoo"
         }
+```
 
 Creates a new PotLuck event.
 
@@ -156,9 +164,11 @@ Creates a new PotLuck event.
 
 id in url refers to the event id
 
-Request:{
+Request:
+```json {
             "account_id:" 2
         }
+```
 
 Adds requested user by id to list of invites for an event.
 
@@ -172,11 +182,13 @@ Returns all events the signed-in user has been invited to.
 
 id in url refers to the event id
 
-Request:{
+Request:
+```json {
             "name": "potato chips",
             "food_qty": "2 bags",
             "category": "snacks"
         }
+```
 
 Adds requested food item to list of food for an event.
 
@@ -196,13 +208,15 @@ Returns a food by id
 
 id in url refers to the invite id
 
-Request:{
+Request:
+```json {
             "food": "soda pop",
             "food_qty: "12 pk",
             "rsvp": true,
             "notes": "I am going to bring regular and diet."
 
         }
+```
 
 Allows invited user to list what food item they are bringing, rsvp and add optinal notes.
 
@@ -210,12 +224,14 @@ Allows invited user to list what food item they are bringing, rsvp and add optin
 
 id in url refers to the event id
 
-Request:{
+Request:
+```json {
             "name": "Picnic",
             "date": "10/2/2019",
             "time": "12:30 pm",
             "location": "The zoo"
         }
+```
 
 Updates an event.
 
