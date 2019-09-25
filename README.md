@@ -93,7 +93,7 @@ Jonathon Green
 
 <h3>Account-Routes</h3>
 
-**POST** `https://potluck-planner-v2.herokuapp.com/accounts/register`
+***POST*** `https://potluck-planner-v2.herokuapp.com/accounts/register`
 
 Request:
 ```json 
