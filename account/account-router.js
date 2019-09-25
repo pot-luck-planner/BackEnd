@@ -6,6 +6,7 @@ const secrets = require('../auth/secrets.js');
 const Accounts = require('./account-model.js');
 const authenticate = require('../auth/authenticate-middleware.js');
 
+//Get your account info
 router.get('/', authenticate, (req, res) => {
   console.log(req.account.id)
   Accounts.find(req.account.id)  
@@ -15,6 +16,8 @@ router.get('/', authenticate, (req, res) => {
     .catch(err => res.send(err));
 });
 
+
+//Get list of all users
 router.get('/users', authenticate, (req, res) => {
   Accounts.findUsers()  
     .then(accounts => {
@@ -23,6 +26,7 @@ router.get('/users', authenticate, (req, res) => {
     .catch(err => res.send(err));
 });
 
+//Register
 router.post('/register', (req, res) => {
     let account = req.body;
     const hash = bcrypt.hashSync(account.password, 16);
@@ -37,7 +41,8 @@ router.post('/register', (req, res) => {
         res.status(500).json(error);
       });
   });
-  
+
+//Login  
 router.post('/login', (req, res) => {
     let { username, password } = req.body;
   
@@ -74,6 +79,7 @@ router.put('/:id', authenticate, (req, res) => {
           });
 })
 
+//Generates token
 function generateToken(account) {
     const payload = {
       id: account.id,

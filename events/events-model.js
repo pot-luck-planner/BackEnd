@@ -72,11 +72,11 @@ function foodItem(id) {
 
 //Get events you're invited to
 function myInvites(id) {
-  return db('invites')
+  return db('events')
   .select()
   .where({ account_id: id })
 }
-
+ 
 //Update invites
 async function updateInvite(changes, id) {
   await db('invites')

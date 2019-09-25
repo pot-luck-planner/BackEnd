@@ -32,16 +32,19 @@ async function find(id) {
    return { myAccount,  myEvents,  potlucks } 
 }
 
+//Search for account by filter
 function findBy(filter) {
   return db('accounts').where(filter);
 }
 
+//Register
 async function add(account) {
   const [id] = await db('accounts').insert(account, 'id');
 
   return findById(id);
 }
 
+//Find account by id
 function findById(id) {
   return db('accounts')
     .select('id', 'username', 'firstname', 'lastname')
