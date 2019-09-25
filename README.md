@@ -85,18 +85,19 @@ Jonathon Green
 `food.string('food_qty', 128);`<br />
 `food.string('category', 128);`<br />
 
-## Endpoints
+<h2>Endpoints</h2>
 
-### Base Url
+<h3>Base Url</h3>
 
-https://potluck-planner-v2.herokuapp.com/
+`https://potluck-planner-v2.herokuapp.com/`
 
-### Account-Routes
+<h3>Account-Routes</h3>
 
-##### POST `https://potluck-planner-v2.herokuapp.com/accounts/register`
+**POST** `https://potluck-planner-v2.herokuapp.com/accounts/register`
 
 Request:
-```json {          
+```json 
+        {          
             "firstname": "John",
             "lastname": "Doe",
 	        "username": "JohnDoe123",
@@ -106,27 +107,29 @@ Request:
 
 Creates and returns a token.
 
-##### POST https://potluck-planner-v2.herokuapp.com/accounts/login
+***POST*** https://potluck-planner-v2.herokuapp.com/accounts/login
 
 Request:
-```json {   
-	        "username": "JohnDoe123"
+```json 
+        {   
+	        "username": "JohnDoe123",
 	        "password": "pa$$w0rd"
         }
 ```
 
 Creates and returns a token.
 
-##### GET https://potluck-planner-v2.herokuapp.com/accounts
+***GET*** https://potluck-planner-v2.herokuapp.com/accounts
 
 Returns signed-in users account information and events that user has created along with any events that user has been invited to.
 
-##### PUT https://potluck-planner-v2.herokuapp.com/accounts/:id
+***PUT*** https://potluck-planner-v2.herokuapp.com/accounts/:id
 
 id in url refers to the account id
 
 Request:
-```json {   
+```json 
+        {   
             "firstname": "John",
             "lastname": "Doe",
 	        "username": "JohnDoe123"
@@ -135,22 +138,23 @@ Request:
 
 Updates account information
 
-### Events-Routes
+<h3>Events-Routes</h3>
 
-##### GET https://potluck-planner-v2.herokuapp.com/events
+***GET*** https://potluck-planner-v2.herokuapp.com/events
 
 Returns all events that the signed in user has created.
 
-##### GET https://potluck-planner-v2.herokuapp.com/events/:id
+***GET*** https://potluck-planner-v2.herokuapp.com/events/:id
 
 id in url refers to the event id
 
 Returns an event by id.
 
-##### POST https://potluck-planner-v2.herokuapp.com/events
+***POST*** https://potluck-planner-v2.herokuapp.com/events
 
 Request:
-```json {
+```json
+        {
             "name": "Picnic",
             "date": "10/2/2019",
             "time": "12 pm",
@@ -160,30 +164,32 @@ Request:
 
 Creates a new PotLuck event.
 
-##### POST ##### GET https://potluck-planner-v2.herokuapp.com/events/:id/invites
+***POST*** https://potluck-planner-v2.herokuapp.com/events/:id/invites
 
 id in url refers to the event id
 
 Request:
-```json {
+```json 
+        {
             "account_id:" 2
         }
 ```
 
 Adds requested user by id to list of invites for an event.
 
-##### GET ##### GET https://potluck-planner-v2.herokuapp.com/events/invites:id
+***GET*** https://potluck-planner-v2.herokuapp.com/events/invites:id
 
 id in url refers to the account id
 
 Returns all events the signed-in user has been invited to.
 
-##### POST https://potluck-planner-v2.herokuapp.com/events/:id/food
+***POST*** https://potluck-planner-v2.herokuapp.com/events/:id/food
 
 id in url refers to the event id
 
 Request:
-```json {
+```json 
+        {
             "name": "potato chips",
             "food_qty": "2 bags",
             "category": "snacks"
@@ -192,40 +198,41 @@ Request:
 
 Adds requested food item to list of food for an event.
 
-##### GET https://potluck-planner-v2.herokuapp.com/events/:id/food
+***GET*** https://potluck-planner-v2.herokuapp.com/events/:id/food
 
 id in url refers to the account id
 
 Returns all food that has been added to an event
 
-##### GET https://potluck-planner-v2.herokuapp.com/events/food/:id
+***GET*** https://potluck-planner-v2.herokuapp.com/events/food/:id
 
 id in url refers to the food item id
 
 Returns a food by id
 
-##### PUT https://potluck-planner-v2.herokuapp.com/events/:id/invites
+***PUT*** https://potluck-planner-v2.herokuapp.com/events/:id/invites
 
 id in url refers to the invite id
 
 Request:
-```json {
+```json
+         {
             "food": "soda pop",
-            "food_qty: "12 pk",
+            "food_qty": "12 pk",
             "rsvp": true,
             "notes": "I am going to bring regular and diet."
-
         }
 ```
 
 Allows invited user to list what food item they are bringing, rsvp and add optinal notes.
 
-##### PUT https://potluck-planner-v2.herokuapp.com/events/:id
+***PUT*** https://potluck-planner-v2.herokuapp.com/events/:id
 
 id in url refers to the event id
 
 Request:
-```json {
+```json
+         {
             "name": "Picnic",
             "date": "10/2/2019",
             "time": "12:30 pm",
@@ -235,7 +242,7 @@ Request:
 
 Updates an event.
 
-##### DELETE https://potluck-planner-v2.herokuapp.com/events/:id
+***DELETE*** https://potluck-planner-v2.herokuapp.com/events/:id
 
 id in url refers to the event id
 
@@ -243,7 +250,7 @@ Deletes an event.
 
 Here you will find the documentation and resources for the Potluck Planner Backend Node server. 
 
-## Endpoints
+// ## Endpoints
 
 ### [Click this link for the list of endpoints and how to use them!](https://docs.google.com/document/d/1ZAGspcgEKSvwzJ7wTOKF_97kW1xaKpER7XVd8HG9NkU/edit?usp=sharing "Click me!!!!!!")
 
