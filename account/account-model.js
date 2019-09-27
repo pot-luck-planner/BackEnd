@@ -24,7 +24,7 @@ async function find(id) {
   const potlucks = await db('events as ev')
        .innerJoin('invites as i', 'ev.id', '=', 'i.event_id')
        .innerJoin('accounts as a', 'ev.host_id', '=', 'a.id')
-       .select('i.id', 'ev.name', 'a.firstname as host_fn', 'a.lastname as host_ln', 'ev.host_name as host_un', 'ev.date', 'ev.time', 'ev.location', 'i.food', 'i.notes')
+       .select('i.id as invite_id', 'ev.name', 'ev.id as event_id', 'a.firstname as host_fn', 'a.lastname as host_ln', 'ev.host_name as host_un', 'ev.date', 'ev.time', 'ev.location', 'i.food', 'i.rsvp', 'i.notes')
        .where({ account_id: id })
   const myEvents = await db('events')
        .select()
