@@ -74,5 +74,5 @@ exports.down = function(knex) {
         .dropTableIfExists('invites')
         .dropTableIfExists('events')
         .dropTableIfExists('accounts');
-};
+}; 
 
